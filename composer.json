@@ -1,0 +1,29 @@
+{
+    "name": "yarcode/simple-events",
+    "description": "Simple event dispatching library for PHP",
+    "keywords": [
+        "event",
+        "bus",gi
+        "emitter",
+        "dispatcher"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexey Samoylov",
+            "email": "alexey.samoylov@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "YarCode\\Event\\": "./src"
+        }
+    }
+}
