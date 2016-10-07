@@ -3,7 +3,7 @@
     "description": "Simple event dispatching library for PHP",
     "keywords": [
         "event",
-        "bus",gi
+        "bus",
         "emitter",
         "dispatcher"
     ],
