@@ -7,7 +7,7 @@ namespace YarCode\Events;
 
 trait EventEmitterTrait
 {
-    protected $listeners = [];
+    private $listeners = [];
 
     /**
      * @param string $eventName
@@ -61,7 +61,7 @@ trait EventEmitterTrait
         $event->name = $eventName;
         $event->handled = false;
 
-        $this->runListeners($event, $event);
+        $this->runListeners($eventName, $event);
     }
 
     /**
