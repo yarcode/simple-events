@@ -31,7 +31,7 @@ to the require section of your `composer.json`
 
 ### Via EventEmitterTrait
 
-Attach `\YarCode\Events\EventEmitterTrait` to your class.
+Attach `\YarCode\Events\EventEmitterTrait` to your class to make it `EventEmitter`
 
 ```php
 class MyClass {
