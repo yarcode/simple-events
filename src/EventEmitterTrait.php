@@ -59,9 +59,7 @@ trait EventEmitterTrait
             return;
         }
 
-        if ($event === null) {
-            $event = new Event;
-        }
+        $event = $event ?: new Event();
 
         $event->name = $eventName;
         $event->handled = false;
