@@ -60,7 +60,6 @@ trait EventEmitterTrait
         }
 
         $event = $event ?: new Event();
-
         $event->name = $eventName;
         $event->handled = false;
 
