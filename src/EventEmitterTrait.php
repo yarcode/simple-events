@@ -53,9 +53,7 @@ trait EventEmitterTrait
      */
     public function emit($eventName, Event $event = null)
     {
-        $listeners = $this->listeners($eventName);
-
-        if (empty($listeners)) {
+        if (empty($this->listeners($eventName))) {
             return;
         }
 
@@ -63,12 +61,7 @@ trait EventEmitterTrait
         $event->name = $eventName;
         $event->handled = false;
 
-        foreach ($this->listeners($eventName) as $listener) {
-            call_user_func($listener, $event);
-            if ($event->handled) {
-                return;
-            }
-        }
+        $this->runListeners($event, $event);
     }
 
     /**
@@ -78,5 +71,19 @@ trait EventEmitterTrait
     public function listeners($eventName)
     {
         return isset($this->listeners[$eventName]) ? $this->listeners[$eventName] : [];
+    }
+
+    /**
+     * @param string $eventName
+     * @param Event $event
+     */
+    private function runListeners($eventName, Event $event)
+    {
+        foreach ($this->listeners($eventName) as $listener) {
+            call_user_func($listener, $event);
+            if ($event->handled) {
+                break;
+            }
+        }
     }
 }
