@@ -3,11 +3,12 @@
     "description": "Simple event dispatching library for PHP",
     "keywords": [
         "event",
-        "bus",
         "emitter",
+        "bus",
         "dispatcher",
-        "eventemitter",
-        "eventbus"
+        "event-emitter",
+        "event-bus",
+        "event-dispatcher"
     ],
     "license": "MIT",
     "authors": [
