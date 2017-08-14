@@ -5,7 +5,9 @@
         "event",
         "bus",
         "emitter",
-        "dispatcher"
+        "dispatcher",
+        "eventemitter",
+        "eventbus"
     ],
     "license": "MIT",
     "authors": [
