@@ -2,7 +2,8 @@
 /**
  * @author Alexey Samoylov <alexey.samoylov@gmail.com>
  */
-namespace YarCode\Event;
+
+namespace YarCode\Events;
 
 interface EventEmitterInterface
 {

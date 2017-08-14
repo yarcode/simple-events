@@ -19,11 +19,11 @@
         "php": ">=5.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.8"
+        "phpunit/phpunit": "~6"
     },
     "autoload": {
         "psr-4": {
-            "YarCode\\Event\\": "./src"
+            "YarCode\\Events\\": "./src"
         }
     }
 }

@@ -2,7 +2,8 @@
 /**
  * @author Alexey Samoylov <alexey.samoylov@gmail.com>
  */
-namespace YarCode\Event;
+
+namespace YarCode\Events;
 
 trait EventEmitterTrait
 {
@@ -48,15 +49,6 @@ trait EventEmitterTrait
 
     /**
      * @param string $eventName
-     * @return array
-     */
-    public function listeners($eventName)
-    {
-        return isset($this->listeners[$eventName]) ? $this->listeners[$eventName] : [];
-    }
-
-    /**
-     * @param string $eventName
      * @param Event $event
      */
     public function emit($eventName, Event $event = null)
@@ -80,5 +72,14 @@ trait EventEmitterTrait
                 return;
             }
         }
+    }
+
+    /**
+     * @param string $eventName
+     * @return array
+     */
+    public function listeners($eventName)
+    {
+        return isset($this->listeners[$eventName]) ? $this->listeners[$eventName] : [];
     }
 }
