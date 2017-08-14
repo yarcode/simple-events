@@ -24,8 +24,18 @@ class EventEmitterTest extends \PHPUnit\Framework\TestCase
     {
         $callback = function ($event) {
         };
+        $this->emitter->addListener('test', $callback);
         $this->emitter->removeListener('test', $callback);
-        $this->emitter->removeListener('test', $callback);
+        $this->assertEmpty($this->emitter->listeners('test'));
+    }
+
+    public function testRemoveAllListenersForEvent()
+    {
+        $callback = function ($event) {
+        };
+        $this->emitter->addListener('test', $callback);
+        $this->emitter->addListener('test', $callback);
+        $this->emitter->removeAllListeners('test');
         $this->assertEmpty($this->emitter->listeners('test'));
     }
 
@@ -35,7 +45,7 @@ class EventEmitterTest extends \PHPUnit\Framework\TestCase
         };
         $this->emitter->addListener('test', $callback);
         $this->emitter->addListener('test', $callback);
-        $this->emitter->removeAllListeners('test');
+        $this->emitter->removeAllListeners();
         $this->assertEmpty($this->emitter->listeners('test'));
     }
 
@@ -48,6 +58,17 @@ class EventEmitterTest extends \PHPUnit\Framework\TestCase
         $this->emitter->addListener('test', $callback);
         $this->emitter->emit('test');
         $this->assertTrue($testOk);
+    }
+
+    public function testEmitMissing()
+    {
+        $testOk = false;
+        $callback = function ($event) use (&$testOk) {
+            $testOk = true;
+        };
+        $this->emitter->addListener('test', $callback);
+        $this->emitter->emit('missing_event');
+        $this->assertFalse($testOk);
     }
 
     public function testListeners()
