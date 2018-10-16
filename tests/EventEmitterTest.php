@@ -60,6 +60,22 @@ class EventEmitterTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($testOk);
     }
 
+    public function testEmitBreak()
+    {
+        $testOk = false;
+        $callback = function (\YarCode\Events\Event $event) use (&$testOk) {
+            $testOk = true;
+            $event->handled = true;
+        };
+        $callback2 = function () use (&$testOk) {
+            $testOk = false;
+        };
+        $this->emitter->addListener('test', $callback);
+        $this->emitter->addListener('test', $callback2);
+        $this->emitter->emit('test');
+        $this->assertTrue($testOk);
+    }
+
     public function testEmitMissing()
     {
         $testOk = false;
