@@ -6,9 +6,7 @@ Simple event dispatching library for PHP
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yarcode/simple-events/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yarcode/simple-events/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/yarcode/simple-events/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/yarcode/simple-events/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/yarcode/simple-events/badges/build.png?b=master)](https://scrutinizer-ci.com/g/yarcode/simple-events/build-status/master)
-[![Latest Stable Version](https://poser.pugx.org/yarcode/simple-events/v/stable)](https://packagist.org/packages/yarcode/simple-events)
-[![Total Downloads](https://poser.pugx.org/yarcode/simple-events/downloads)](https://packagist.org/packages/yarcode/simple-events)
-[![License](https://poser.pugx.org/yarcode/simple-events/license)](https://packagist.org/packages/yarcode/simple-events)
+[![GitHub license](https://img.shields.io/github/license/yarcode/simple-events.svg?style=popout-square)](https://github.com/yarcode/simple-events/blob/master/LICENSE)
 
 ## Installation
 
@@ -136,3 +134,8 @@ $emitter->emit('TestEmitterAccessEvent');
 ## License
 
 MIT
+
+## Links ##
+
+* [GitHub repository](https://github.com/yarcode/simple-events)
+* [Composer package](https://packagist.org/packages/yarcode/simple-events)
