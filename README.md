@@ -78,6 +78,13 @@ $emitter->emit('TestEvent', $event);
 // TestEvent was emitted
 // TestEvent was emitted one more time
 ```
+You could pass any data as event payload. 
+It would be passed as a first parameter to a listener callable.
+
+```php
+$data = ['foo', 'bar'];
+$emitter->emit('MixedDataEvent', $data);
+```
 
 ### Removing listeners
 You can remove one concrete listener.
@@ -108,9 +115,24 @@ $emitter->addListener('TestEvent', function (\YarCode\Events\Event $event) {
 $emitter->addListener('TestEvent', function (\YarCode\Events\Event $event) {
     echo "This callback for {$event->name} would never run";
 });
-$emitter->emit('TestEvent);
+$emitter->emit('TestEvent');
 ```
 
+### Accessing the emitter from the listener
+
+Emitter object is being passed as a second parameter to a listener.
+
+```php
+$emitter->addListener('TestEmitterAccessEvent', function ($data, $emitter) {
+    echo "Hello"; 
+    $emitter->emit('TestEmitterAccessEvent2', $data);
+});
+$emitter->addListener('TestEmitterAccessEvent2', function ($data) {
+    echo " World";
+});
+$emitter->emit('TestEmitterAccessEvent');
+// Hello World
+```
 ## License
 
 MIT

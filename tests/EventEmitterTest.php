@@ -52,7 +52,7 @@ class EventEmitterTest extends \PHPUnit\Framework\TestCase
     public function testEmit()
     {
         $testOk = false;
-        $callback = function ($event) use (&$testOk) {
+        $callback = function () use (&$testOk) {
             $testOk = true;
         };
         $this->emitter->addListener('test', $callback);
@@ -63,12 +63,38 @@ class EventEmitterTest extends \PHPUnit\Framework\TestCase
     public function testEmitMissing()
     {
         $testOk = false;
-        $callback = function ($event) use (&$testOk) {
+        $callback = function () use (&$testOk) {
             $testOk = true;
         };
         $this->emitter->addListener('test', $callback);
         $this->emitter->emit('missing_event');
         $this->assertFalse($testOk);
+    }
+
+    public function testEmitBoolData()
+    {
+        $testOk = false;
+        $callback = function ($data) use (&$testOk) {
+            $testOk = $data;
+        };
+        $this->emitter->addListener('test', $callback);
+        $this->emitter->emit('test', true);
+        $this->assertTrue($testOk);
+    }
+
+    public function testEmitChained()
+    {
+        $testOk = false;
+        $callback = function ($data, \YarCode\Events\EventEmitterInterface $emitter) {
+            $emitter->emit('test2', $data);
+        };
+        $callback2 = function ($data) use (&$testOk) {
+            $testOk = $data;
+        };
+        $this->emitter->addListener('test', $callback);
+        $this->emitter->addListener('test2', $callback2);
+        $this->emitter->emit('test', true);
+        $this->assertTrue($testOk);
     }
 
     public function testListeners()

@@ -49,19 +49,21 @@ trait EventEmitterTrait
 
     /**
      * @param string $eventName
-     * @param Event $event
+     * @param Event|mixed $eventData
      */
-    public function emit($eventName, Event $event = null)
+    public function emit($eventName, $eventData = null)
     {
         if (empty($this->listeners($eventName))) {
             return;
         }
 
-        $event = $event ?: new Event();
-        $event->name = $eventName;
-        $event->handled = false;
+        if ($eventData === null) {
+            $eventData = new Event();
+            $eventData->name = $eventName;
+            $eventData->handled = false;
+        }
 
-        $this->runListeners($eventName, $event);
+        $this->runListeners($eventName, $eventData);
     }
 
     /**
@@ -75,14 +77,16 @@ trait EventEmitterTrait
 
     /**
      * @param string $eventName
-     * @param Event $event
+     * @param Event|mixed $eventData
      */
-    private function runListeners($eventName, Event $event)
+    private function runListeners($eventName, $eventData)
     {
         foreach ($this->listeners($eventName) as $listener) {
-            call_user_func($listener, $event);
-            if ($event->handled) {
-                break;
+            call_user_func($listener, $eventData, $this);
+            if ($eventData instanceof Event) {
+                if ($eventData->handled) {
+                    break;
+                }
             }
         }
     }
