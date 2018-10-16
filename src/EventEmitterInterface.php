@@ -32,7 +32,7 @@ interface EventEmitterInterface
 
     /**
      * @param string $eventName
-     * @param Event $event
+     * @param Event|mixed $eventData
      */
-    public function emit($eventName, Event $event = null);
+    public function emit($eventName, $eventData = null);
 }
